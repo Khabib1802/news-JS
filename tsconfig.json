@@ -21,7 +21,9 @@
         "exactOptionalPropertyTypes": true,
         "verbatimModuleSyntax": true,
         "isolatedModules": true,
-        "noUncheckedSideEffectImports": true
+        "noUncheckedSideEffectImports": true,
+
+        "types": ["node"]
     },
 
     "include": ["src/**/*"],
