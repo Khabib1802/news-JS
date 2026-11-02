@@ -7,7 +7,7 @@ type RequestParams = {
     options?: RequestOptions;
 };
 
-type ResponseCallback<T> = (data: T) => void;
+export type ResponseCallback<T> = (data: T) => void;
 
 type HttpMethod = 'POST' | 'GET';
 
