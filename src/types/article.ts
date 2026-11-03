@@ -13,3 +13,8 @@ export interface Article {
     publishedAt: string;
     content: string | null;
 }
+
+export type ArticleCardData = Pick<
+    Article,
+    'source' | 'author' | 'title' | 'description' | 'url' | 'urlToImage' | 'publishedAt'
+>;

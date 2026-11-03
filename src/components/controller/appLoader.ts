@@ -6,9 +6,7 @@ class AppLoader extends Loader {
             throw new Error('Missing API_URL or API_KEY');
         }
 
-        super(process.env.API_URL, {
-            apiKey: process.env.API_KEY,
-        });
+        super(process.env.API_URL, { apiKey: process.env.API_KEY });
     }
 }
 

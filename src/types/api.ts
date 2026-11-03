@@ -3,6 +3,11 @@ import type { Source } from './source';
 
 export type ApiStatus = 'ok' | 'error';
 
+export interface ApiQuery {
+    apiKey: string;
+    sources: string;
+}
+
 export interface SourcesResponse {
     status: ApiStatus;
     sources: Source[];

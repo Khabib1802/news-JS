@@ -1,9 +1,9 @@
-import type { Article } from '../../../types';
+import type { ArticleCardData } from '../../../types';
 import './news.css';
 
 class News {
-    public draw(data: Article[]): void {
-        const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
+    public draw(data: readonly ArticleCardData[]): void {
+        const news = data.slice(0, 10);
 
         const fragment = document.createDocumentFragment();
         const newsItemTemp = document.querySelector<HTMLTemplateElement>('#newsItemTemp');

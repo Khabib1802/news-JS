@@ -1,5 +1,5 @@
 export type { Source } from './source';
 
-export type { Article, ArticleSource } from './article';
+export type { Article, ArticleCardData, ArticleSource } from './article';
 
-export type { SourcesResponse, ArticlesResponse, ApiErrorResponse } from './api';
+export type { ApiQuery, SourcesResponse, ArticlesResponse, ApiErrorResponse } from './api';

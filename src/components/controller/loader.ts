@@ -1,13 +1,14 @@
-import { ERROR_STATUS } from '../../types/api';
+import type { ApiQuery } from '../../types';
+import { ENDPOINT, ERROR_STATUS } from '../../types/api';
 
-type RequestOptions = {
-    [key: string]: string;
-};
+type LoaderOptions = Readonly<Pick<ApiQuery, 'apiKey'>>;
+
+type RequestOptions = Partial<ApiQuery>;
 
 export type ResponseValidator<T> = (data: unknown) => data is T;
 
 type RequestParams = {
-    endpoint: string;
+    endpoint: ENDPOINT;
     options?: RequestOptions;
 };
 
@@ -16,10 +17,10 @@ export type ResponseCallback<T> = (data: T) => void;
 type HttpMethod = 'POST' | 'GET';
 
 class Loader {
-    private baseLink: string;
-    private options: RequestOptions;
+    private readonly baseLink: string;
+    private readonly options: LoaderOptions;
 
-    constructor(baseLink: string, options: RequestOptions) {
+    constructor(baseLink: string, options: LoaderOptions) {
         this.baseLink = baseLink;
         this.options = options;
     }
@@ -44,20 +45,15 @@ class Loader {
         return res;
     }
 
-    private makeUrl(options: RequestOptions, endpoint: string): string {
-        const urlOptions = { ...this.options, ...options };
-        let url = `${this.baseLink}${endpoint}?`;
+    private makeUrl(options: RequestOptions, endpoint: ENDPOINT): string {
+        const params = new URLSearchParams({ ...this.options, ...options });
 
-        Object.keys(urlOptions).forEach((key) => {
-            url += `${key}=${urlOptions[key]}&`;
-        });
-
-        return url.slice(0, -1);
+        return `${this.baseLink}${endpoint}?${params.toString()}`;
     }
 
     private load<T>(
         method: HttpMethod,
-        endpoint: string,
+        endpoint: ENDPOINT,
         callback: ResponseCallback<T>,
         validator: ResponseValidator<T>,
         options: RequestOptions = {}
