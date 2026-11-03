@@ -151,3 +151,43 @@ a {
     width: auto;
     height: 32px;
 }
+
+@media (min-width: 640px) {
+    :root {
+        --gutter: 24px;
+    }
+
+    .header__inner {
+        padding-block: 32px;
+    }
+
+    .header__title {
+        font-size: 2.5rem;
+    }
+
+    .footer__inner {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
+}
+
+@media (min-width: 1024px) {
+    :root {
+        --gutter: 32px;
+    }
+
+    .header__title {
+        font-size: 3rem;
+    }
+
+    .main {
+        padding-block: 32px 56px;
+    }
+}
+
+@media (min-width: 1440px) {
+    :root {
+        --content-width: 1360px;
+    }
+}
