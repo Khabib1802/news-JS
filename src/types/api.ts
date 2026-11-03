@@ -1,7 +1,7 @@
 import type { Article } from './article';
 import type { Source } from './source';
 
-type ApiStatus = 'ok' | 'error';
+export type ApiStatus = 'ok' | 'error';
 
 export interface SourcesResponse {
     status: ApiStatus;

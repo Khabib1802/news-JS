@@ -1,5 +1,6 @@
 import type { ArticlesResponse, SourcesResponse } from '../../types';
 import { ENDPOINT } from '../../types/api';
+import { isArticlesResponse, isSourcesResponse } from '../../utils/validators';
 import AppLoader from './appLoader';
 import type { ResponseCallback } from './loader';
 
@@ -9,6 +10,7 @@ class AppController extends AppLoader {
             {
                 endpoint: ENDPOINT.SOURCES,
             },
+            isSourcesResponse,
             callback
         );
     }
@@ -33,6 +35,7 @@ class AppController extends AppLoader {
                                 sources: sourceId,
                             },
                         },
+                        isArticlesResponse,
                         callback
                     );
                 }
