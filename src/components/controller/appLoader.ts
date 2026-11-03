@@ -2,11 +2,13 @@ import Loader from './loader';
 
 class AppLoader extends Loader {
     constructor() {
-        if (!process.env.API_URL || !process.env.API_KEY) {
-            throw new Error('Missing API_URL or API_KEY');
+        if (!process.env.API_URL) {
+            throw new Error('Missing API_URL');
         }
 
-        super(process.env.API_URL, { apiKey: process.env.API_KEY });
+        const options = process.env.API_KEY ? { apiKey: process.env.API_KEY } : {};
+
+        super(process.env.API_URL, options);
     }
 }
 

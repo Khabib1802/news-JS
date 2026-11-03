@@ -4,7 +4,7 @@ import type { Source } from './source';
 export type ApiStatus = 'ok' | 'error';
 
 export interface ApiQuery {
-    apiKey: string;
+    apiKey?: string;
     sources: string;
 }
 

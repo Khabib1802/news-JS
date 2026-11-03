@@ -1,7 +1,7 @@
 import type { ApiQuery } from '../../types';
 import { ENDPOINT, ERROR_STATUS } from '../../types/api';
 
-type LoaderOptions = Readonly<Pick<ApiQuery, 'apiKey'>>;
+type LoaderOptions = Readonly<Partial<Pick<ApiQuery, 'apiKey'>>>;
 
 type RequestOptions = Partial<ApiQuery>;
 
@@ -46,9 +46,18 @@ class Loader {
     }
 
     private makeUrl(options: RequestOptions, endpoint: ENDPOINT): string {
-        const params = new URLSearchParams({ ...this.options, ...options });
+        const params = new URLSearchParams();
+        const query = { ...this.options, ...options };
 
-        return `${this.baseLink}${endpoint}?${params.toString()}`;
+        Object.entries(query).forEach(([key, value]) => {
+            if (value !== undefined && value !== '') {
+                params.set(key, value);
+            }
+        });
+
+        const queryString = params.toString();
+
+        return `${this.baseLink}${endpoint}${queryString ? `?${queryString}` : ''}`;
     }
 
     private load<T>(
