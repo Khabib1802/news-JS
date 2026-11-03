@@ -1,13 +1,15 @@
 import type { Article } from './article';
 import type { Source } from './source';
 
+type ApiStatus = 'ok' | 'error';
+
 export interface SourcesResponse {
-    status: string;
+    status: ApiStatus;
     sources: Source[];
 }
 
 export interface ArticlesResponse {
-    status: string;
+    status: ApiStatus;
     totalResults: number;
     articles: Article[];
 }
