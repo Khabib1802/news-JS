@@ -17,3 +17,8 @@ export interface ApiErrorResponse {
     code: string;
     message: string;
 }
+
+export enum ENDPOINT {
+    EVERYTHING = 'everything',
+    SOURCES = 'sources',
+}
