@@ -1,3 +1,5 @@
+import { ERROR_STATUS } from '../../types/api';
+
 type RequestOptions = {
     [key: string]: string;
 };
@@ -31,7 +33,7 @@ class Loader {
 
     private errorHandler(res: Response): Response {
         if (!res.ok) {
-            if (res.status === 401 || res.status === 404)
+            if (res.status === ERROR_STATUS.UNAUTHORIZED || res.status === ERROR_STATUS.NOT_FOUND)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
             throw Error(res.statusText);
         }

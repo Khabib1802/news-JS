@@ -22,3 +22,8 @@ export enum ENDPOINT {
     EVERYTHING = 'everything',
     SOURCES = 'sources',
 }
+
+export enum ERROR_STATUS {
+    UNAUTHORIZED = 401,
+    NOT_FOUND = 404,
+}
