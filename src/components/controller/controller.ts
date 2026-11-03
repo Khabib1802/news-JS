@@ -28,6 +28,7 @@ class AppController extends AppLoader {
                 const sourceId = target.getAttribute('data-source-id');
                 if (sourceId && newsContainer.getAttribute('data-source') !== sourceId) {
                     newsContainer.setAttribute('data-source', sourceId);
+                    this.markActive(newsContainer, target);
                     super.getResp(
                         {
                             endpoint: ENDPOINT.EVERYTHING,
@@ -43,6 +44,14 @@ class AppController extends AppLoader {
             }
             target = target.parentNode;
         }
+    }
+
+    private markActive(container: HTMLElement, activeItem: Element): void {
+        container.querySelectorAll('.source__item').forEach((item) => {
+            const isActive = item === activeItem;
+            item.classList.toggle('source__item--active', isActive);
+            item.setAttribute('aria-pressed', String(isActive));
+        });
     }
 }
 
